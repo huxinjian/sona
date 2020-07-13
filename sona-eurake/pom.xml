@@ -11,7 +11,7 @@
     <artifactId>sona-eurake</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sona-eurake</name>
-    <description>Demo project for Spring Boot</description>
+    <description>sona 注册中心</description>
 
     <properties>
         <java.version>1.8</java.version>
