@@ -1,13 +1,13 @@
-package com.jiuye.sonazuul;
+package com.jiuye.sona;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SonaZuulApplication {
+public class SonaGateWayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SonaZuulApplication.class, args);
+        SpringApplication.run(SonaGateWayApplication.class, args);
     }
 
 }

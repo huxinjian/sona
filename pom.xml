@@ -15,10 +15,9 @@
     <modules>
         <module>sona-eurake</module>
         <module>sona-rest</module>
-        <module>sona-zuul</module>
+        <module>sona-gateway</module>
         <module>sona-order</module>
         <module>sona-product</module>
-        <module>sona-eurake</module>
         <module>sona-common</module>
     </modules>
     <properties>
@@ -38,10 +37,8 @@
         <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.13</logback.version>
-        <lombok.version>1.16.10</lombok.version>
         <fastJson.version>1.2.56</fastJson.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <!--spring-cloud-->
@@ -72,12 +69,7 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
             </dependency>
-            <!--Lombok-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
+
             <!--微服务文档-->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -89,10 +81,11 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!--Lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${lombok.vesion}</version>
+                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -101,12 +94,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-    </dependencies>
 
 
 

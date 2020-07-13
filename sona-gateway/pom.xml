@@ -8,10 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.jiuye</groupId>
-    <artifactId>sona-zuul</artifactId>
+    <artifactId>sona-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sona-zuul</name>
-    <description>this is sona zuul</description>
+    <name>sona-gateway</name>
+    <description>this is sona gateway</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -24,7 +24,20 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
