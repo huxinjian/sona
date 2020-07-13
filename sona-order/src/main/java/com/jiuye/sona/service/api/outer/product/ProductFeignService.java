@@ -1,5 +1,6 @@
 package com.jiuye.sona.service.api.outer.product;
 
+import com.jiuye.sona.common.vo.base.SonaBasicResponseVo;
 import com.jiuye.sona.common.vo.product.ProductVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date: 2020/7/10 17:51
  * @Email: huxinjian@jiuyescm.com
  */
-@FeignClient
-public interface ProductService {
+@FeignClient(value = "sona-product")
+public interface ProductFeignService {
 
     /**
      * 获取商品信息
@@ -21,7 +22,7 @@ public interface ProductService {
      * @return
      */
     @GetMapping("/product/{productId}")
-    ProductVo queryProductInfo(@PathVariable("productId") String productId);
+    SonaBasicResponseVo<ProductVo> queryProductInfo(@PathVariable("productId") String productId);
 
 
     /**

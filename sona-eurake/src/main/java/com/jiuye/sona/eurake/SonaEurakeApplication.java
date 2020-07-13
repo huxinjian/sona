@@ -13,9 +13,8 @@ public class SonaEurakeApplication {
     private static final Logger logger = LoggerFactory.getLogger(SonaEurakeApplication.class);
 
     public static void main(String[] args) {
-
         SpringApplication.run(SonaEurakeApplication.class, args);
-        logger.info("注册中心启动完毕");
+        logger.info("sona-eurake 注册中心启动完毕");
     }
 
 }

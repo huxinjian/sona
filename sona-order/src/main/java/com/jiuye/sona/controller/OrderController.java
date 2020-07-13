@@ -5,8 +5,7 @@ import com.jiuye.sona.entity.OrderDetailEntity;
 import com.jiuye.sona.entity.OrderEntity;
 import com.jiuye.sona.service.api.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,12 +17,18 @@ import java.util.List;
  * @Email: huxinjian@jiuyescm.com
  */
 @RestController
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
     private IOrderService orderService;
 
-    @PostMapping
+    /**
+     * 创建订单
+     *
+     * @return
+     */
+    @GetMapping("/createOrder")
     public SonaBasicResponseVo creatOrder(){
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setProductNum(new BigDecimal(5));
@@ -32,18 +37,23 @@ public class OrderController {
         orderEntity.setReceivePhone("13111112222");
         List<OrderDetailEntity> orderDetailEntityList = new ArrayList<>();
         OrderDetailEntity orderDetailEntity1 =  new OrderDetailEntity();
-        orderDetailEntity1.setProductId("p1");
+        orderDetailEntity1.setProductId("001");
         orderDetailEntityList.add(orderDetailEntity1);
 
         OrderDetailEntity orderDetailEntity2 =  new OrderDetailEntity();
-        orderDetailEntity2.setProductId("p2");
+        orderDetailEntity2.setProductId("002");
         orderDetailEntityList.add(orderDetailEntity2);
 
         OrderDetailEntity orderDetailEntity3 =  new OrderDetailEntity();
-        orderDetailEntity3.setProductId("p3");
+        orderDetailEntity3.setProductId("003");
         orderDetailEntityList.add(orderDetailEntity3);
+        orderEntity.setOrderDetail(orderDetailEntityList);
         orderService.createOrder(orderEntity);
 
         SonaBasicResponseVo sonaBasicResponse = new SonaBasicResponseVo();
+        sonaBasicResponse.setCode("失败");
+        sonaBasicResponse.setMessage("成功");
+        sonaBasicResponse.setSuccess(true);
+        return sonaBasicResponse;
     }
 }
