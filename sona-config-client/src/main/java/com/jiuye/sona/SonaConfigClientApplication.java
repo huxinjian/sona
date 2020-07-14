@@ -1,13 +1,16 @@
-package com.jiuye.sona.config.client.sonaconfigclient;
+package com.jiuye.sona;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@Slf4j
 @SpringBootApplication
 public class SonaConfigClientApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SonaConfigClientApplication.class, args);
+        log.info("**********sona-config-client启动成功****************");
     }
 
 }

@@ -5,6 +5,7 @@ import com.jiuye.sona.entity.OrderDetailEntity;
 import com.jiuye.sona.entity.OrderEntity;
 import com.jiuye.sona.service.api.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -17,6 +18,8 @@ import java.util.List;
  * @Email: huxinjian@jiuyescm.com
  */
 @RestController
+//开启更新功能
+@RefreshScope
 @RequestMapping("/order")
 public class OrderController {
 
