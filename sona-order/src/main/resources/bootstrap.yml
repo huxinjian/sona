@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: sona-order
+  # config: http://127.0.0.1:8030/sona-order.application
+  cloud:
+    config:
+      uri: http://127.0.0.1:8030
+      profile: dev

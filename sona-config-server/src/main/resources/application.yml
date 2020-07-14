@@ -1,0 +1,20 @@
+
+server:
+  port: 8030
+
+spring:
+  application:
+    name: sona-config-server
+  profiles:
+    active: native #配置中心-配置文件仓库-本地（除了本地，还有svn，git等配置）
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        native:
+          search-locations: E:/configResporties
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8010/eureka/
+

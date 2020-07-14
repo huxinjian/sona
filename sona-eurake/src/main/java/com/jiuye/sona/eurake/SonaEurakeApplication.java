@@ -14,7 +14,7 @@ public class SonaEurakeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SonaEurakeApplication.class, args);
-        logger.info("sona-eurake 注册中心启动完毕");
+        logger.info("***********sona-eurake 注册中心启动完毕*************");
     }
 
 }
