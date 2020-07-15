@@ -40,6 +40,9 @@
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.13</logback.version>
         <fastJson.version>1.2.56</fastJson.version>
+        <druid.version>1.1.10</druid.version>
+        <mysql.version>5.1.41</mysql.version>
+        <pageHelper.version>1.1.2</pageHelper.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -82,6 +85,27 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+
+            <!--连接驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!--druid数据源-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pageHelper.version}</version>
             </dependency>
             <!--Lombok-->
             <dependency>
