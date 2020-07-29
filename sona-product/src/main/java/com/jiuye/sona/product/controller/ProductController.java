@@ -3,6 +3,7 @@ package com.jiuye.sona.product.controller;
 import com.jiuye.sona.common.vo.base.SonaBasicResponseVo;
 import com.jiuye.sona.common.vo.product.ProductVo;
 import com.jiuye.sona.product.service.product.api.product.IProductService;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class ProductController {
     private IProductService productService;
 
     @GetMapping("/{productId}")
+    @Hystrix
     public SonaBasicResponseVo<ProductVo> queryProductInfo(@PathVariable("productId") String productId) {
         SonaBasicResponseVo<ProductVo> sonaBasicResponseVo = new SonaBasicResponseVo<>();
         try {

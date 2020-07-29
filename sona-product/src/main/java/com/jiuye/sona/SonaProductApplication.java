@@ -5,10 +5,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 @Slf4j
 @SpringBootApplication
 @EnableEurekaClient
+@EnableHystrix
 @MapperScan(basePackages = "com.jiuye.sona.product.dao")
 public class SonaProductApplication {
 

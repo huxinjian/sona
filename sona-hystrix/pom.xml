@@ -8,10 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.jiuye.sona.config.client</groupId>
-    <artifactId>sona-config-client</artifactId>
+    <artifactId>sona-hystrix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sona-config-client</name>
-    <description>sona配置中心的客户端</description>
+    <name>sona-hystrix</name>
+    <description>熔断器相关组件</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -19,8 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!--Spring Boot Actuator，感应服务端变化-->
         <dependency>
@@ -28,8 +28,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+            <version>1.4.6.RELEASE</version>
         </dependency>
         <!--lomok-->
         <dependency>
@@ -46,6 +51,12 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

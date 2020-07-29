@@ -19,7 +19,7 @@
         <module>sona-order</module>
         <module>sona-product</module>
         <module>sona-common</module>
-        <module>sona-config-client</module>
+        <module>sona-hystrix</module>
         <module>sona-config-server</module>
     </modules>
     <properties>
