@@ -64,7 +64,7 @@ public class ZkLockSuper implements Lock {
         // 设置序列化器
         client.setZkSerializer(new SonaZkSerializer());
         // 创建持久节点
-        if (!client.exists(lockPath)) {
+        if (!client.exists(this.lockPath)) {
             client.createPersistent(this.lockPath);
         }
     }
@@ -99,8 +99,9 @@ public class ZkLockSuper implements Lock {
         List<String> children = client.getChildren(lockPath);
         // 对节点进行由小到大排序
         Collections.sort(children);
+        String firstChild = lockPath + "/" + children.get(0);
         // 如果当前节点是最小的节点则获取到锁
-        if (children.get(0).equals(currentPath)) {
+        if (firstChild.equals(currentPath.get())) {
             return true;
         } else {
             // 得到字节的索引号（获取当前节点的索引序号）
@@ -157,7 +158,7 @@ public class ZkLockSuper implements Lock {
         client.subscribeDataChanges(beforePath.get(), dataListener);
         if (this.client.exists(beforePath.get())) {
             try {
-                countDownLatch.wait();
+                countDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
