@@ -21,6 +21,17 @@ public class ZkLockTest {
         zkLock.lock();
         try {
             map.put("test",  map.get("test") +1);
+            calculate3(map);
+        } finally {
+            zkLock.unlock();
+        }
+    }
+
+
+    public void calculate3(Map<String, Integer> map) {
+        zkLock.lock();
+        try {
+            map.put("test",  map.get("test") +1);
         } finally {
             zkLock.unlock();
         }
@@ -31,12 +42,14 @@ public class ZkLockTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
+//        Map<String, Integer> map = new HashMap<>();
+//        map.put("test", 0);
+//        ZkLockTest server1 = new ZkLockTest();
+//        server1.calculate(map);
+//        System.out.println("计算后的结果是："+ map.get("test"));
+
         Map<String, Integer> map = new HashMap<>();
         map.put("test", 0);
-//        ZkLockTest server1 = new ZkLockTest();
-//        server1.calculate2(map);
-//        System.out.println("计算后的结果是："+ map.get("test"));
-//        int a = 0;
         CountDownLatch countDownLatch = new CountDownLatch(5);
         for (int i = 0; i < 5; i++) {
             ZkLockTest server1 = new ZkLockTest();

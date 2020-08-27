@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
@@ -44,10 +45,16 @@ public class ZkLockSuper implements Lock {
      * 子节点（排队票号）
      */
     private ThreadLocal<String> currentPath = new ThreadLocal<String>();
+
     /**
      * 前一个节点（前一个票号）
      */
     private ThreadLocal<String> beforePath = new ThreadLocal<String>();
+
+    /**
+     * 重入锁计数器
+     */
+    private AtomicInteger reentryLockCount = new AtomicInteger(0);
 
     /**
      * 初始化参数
@@ -67,6 +74,8 @@ public class ZkLockSuper implements Lock {
         if (!client.exists(this.lockPath)) {
             client.createPersistent(this.lockPath);
         }
+        //
+        reentryLockCount.set(0);
     }
 
     /**
@@ -102,6 +111,9 @@ public class ZkLockSuper implements Lock {
         String firstChild = lockPath + "/" + children.get(0);
         // 如果当前节点是最小的节点则获取到锁
         if (firstChild.equals(currentPath.get())) {
+            reentryLockCount.getAndIncrement();
+            System.out.println("获取锁成功，重入锁计数计数器加1,当前重入次数为"+reentryLockCount.get());
+            log.info("获取锁成功，重入锁计数计数器加1,当前重入次数为{}", reentryLockCount.get());
             return true;
         } else {
             // 得到字节的索引号（获取当前节点的索引序号）
@@ -118,10 +130,17 @@ public class ZkLockSuper implements Lock {
      */
     @Override
     public void unlock() {
-        if (this.currentPath != null) {
+        Integer count = reentryLockCount.get();
+        if (this.currentPath != null && count == 1) {
             client.delete(currentPath.get());
             currentPath.set(null);
-            log.info("释放锁成功");
+            reentryLockCount.getAndDecrement();
+            System.out.println("释放锁成功，重入锁计数计数器减1，剩余重入次数为"+reentryLockCount.get());
+            log.info("释放锁成功，重入锁计数计数器减1，剩余重入次数为{}", reentryLockCount.get());
+        }else {
+            reentryLockCount.getAndDecrement();
+            System.out.println("释放锁成功，重入锁计数计数器减1，剩余重入次数为"+reentryLockCount.get());
+            log.info("释放锁成功，重入锁计数计数器减1，剩余重入次数为{}", reentryLockCount.get());
         }
     }
 
