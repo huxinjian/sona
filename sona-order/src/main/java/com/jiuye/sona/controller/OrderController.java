@@ -7,6 +7,7 @@ import com.jiuye.sona.service.api.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,7 +27,10 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
-    /**
+    @Autowired
+    private RestTemplate restTemplate;
+
+  /**
      * 创建订单
      *
      * @return
