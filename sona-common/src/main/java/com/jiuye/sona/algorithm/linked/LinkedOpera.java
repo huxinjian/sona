@@ -14,16 +14,16 @@ public class LinkedOpera {
      *
      * @param node
      */
-    public static void reverse(LinkedNode node){
+    public static void reverse(LinkedNode node) {
         LinkedNode newNode = null;
-        while(node != null) {
+        while (node != null) {
             LinkedNode next = node.next;
             node.next = newNode;
             newNode = node;
             node = next;
         }
 
-        while(newNode != null) {
+        while (newNode != null) {
             System.out.println("倒序后的结果是：" + newNode.val);
             newNode = newNode.next;
         }
@@ -41,14 +41,14 @@ public class LinkedOpera {
         LinkedNode preHead = null;
         LinkedNode result = head;
 
-        while(--m > 0) {
+        while (--m > 0) {
             preHead = head;
             head = head.next;
         }
 
         LinkedNode modifyListTail = head;
         LinkedNode newHead = null;
-        while(reverseLength > 0) {
+        while (reverseLength > 0) {
             LinkedNode next = head.next;
             head.next = newHead;
             newHead = head;
@@ -57,13 +57,13 @@ public class LinkedOpera {
         }
 
         modifyListTail.next = head;
-        if(preHead != null) {
+        if (preHead != null) {
             preHead.next = newHead;
         } else {
             result = newHead;
         }
 
-        while(result != null) {
+        while (result != null) {
             System.out.println("倒序后的结果是：" + result.val);
             result = result.next;
         }
@@ -86,7 +86,7 @@ public class LinkedOpera {
         // head的当前位置
         LinkedNode current = head;
         LinkedNode result;
-        while (current !=null) {
+        while (current != null) {
             if (current.val < num) {
                 lessCurrent.next = current;
                 lessCurrent = lessCurrent.next;
@@ -99,10 +99,50 @@ public class LinkedOpera {
         lessCurrent.next = moreHead.next;
         moreCurrent.next = null;
         result = lessHead.next;
-        while(result != null) {
+        while (result != null) {
             System.out.println("拆分后的结果是：" + result.val);
             result = result.next;
         }
+    }
+
+
+    /**
+     * 两个顺序链表合并
+     *
+     * @param aNode
+     * @param bnode
+     */
+    public static void mergeNode(LinkedNode aNode, LinkedNode bnode) {
+        LinkedNode aNodeCurrent = aNode;
+        LinkedNode bNodeCurrent = bnode;
+        LinkedNode mergeNode = new LinkedNode(0);
+        LinkedNode mergeNodeCurrent = mergeNode;
+        while (aNodeCurrent != null || bNodeCurrent != null) {
+            if(aNodeCurrent != null && bNodeCurrent != null) {
+                if (aNodeCurrent.val < bNodeCurrent.val) {
+                    mergeNodeCurrent.next = aNodeCurrent;
+                    aNodeCurrent = aNodeCurrent.next;
+                } else if (aNodeCurrent.val >= bNodeCurrent.val) {
+                    mergeNodeCurrent.next = bNodeCurrent;
+                    bNodeCurrent = bNodeCurrent.next;
+                }
+            } else {
+                if(aNodeCurrent == null) {
+                    mergeNodeCurrent.next = bNodeCurrent;
+                    bNodeCurrent = bNodeCurrent.next;
+                }else if (bNodeCurrent == null) {
+                    mergeNodeCurrent.next = aNodeCurrent;
+                    aNodeCurrent = aNodeCurrent.next;
+                }
+            }
+            mergeNodeCurrent = mergeNodeCurrent.next;
+        }
+        LinkedNode result = mergeNode.next;
+        while (result != null) {
+            System.out.println("合并后的结果是：" + result.val);
+            result = result.next;
+        }
+
     }
 
 
@@ -120,6 +160,17 @@ public class LinkedOpera {
         LinkedNode node3 = new LinkedNode(1, node4);
         LinkedNode node2 = new LinkedNode(4, node3);
         LinkedNode node1 = new LinkedNode(3, node2);
-        partition(node1, 3);
+        //partition(node1, 3);
+
+        //a链表
+        LinkedNode anode3 = new LinkedNode(6);
+        LinkedNode anode2 = new LinkedNode(4, anode3);
+        LinkedNode anode1 = new LinkedNode(2, anode2);
+        // b链表
+        LinkedNode bnode3 = new LinkedNode(7);
+        LinkedNode bnode2 = new LinkedNode(5, bnode3);
+        LinkedNode bnode1 = new LinkedNode(1, bnode2);
+        mergeNode(anode1, bnode1);
+
     }
 }
