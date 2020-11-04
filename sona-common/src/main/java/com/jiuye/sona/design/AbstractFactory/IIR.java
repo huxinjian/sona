@@ -1,8 +1,5 @@
 package com.jiuye.sona.design.AbstractFactory;
 
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,17 +12,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class IIR {
 
-    private static final Logger log = LoggerFactory.getLogger(IIR.class);
 
     private Map<String, String> dataMap = new ConcurrentHashMap<>();
 
     public String get(String key) {
-        log.info("IIR获取数据,key{}", key);
+        System.out.println("IIR获取数据,key" + key);
         return dataMap.get(key);
     }
 
     public void set(String key, String value) {
-        log.info("IIR存储数据,key{},value{}", key, value);
+        System.out.println("IIR存储数据,key"+ key +",value" + value);
         dataMap.put(key,value);
     }
 
@@ -35,7 +31,7 @@ public class IIR {
     }
 
     public void del(String key) {
-        log.info("IIR删除数据,key{}", key);
+        System.out.println("IIR删除数据,key" + key);
         dataMap.remove(key);
     }
 }
