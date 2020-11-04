@@ -1,6 +1,9 @@
 package com.jiuye.sona.algorithm.linked;
 
 import javax.xml.soap.Node;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @Author: xinjian.hu
@@ -8,6 +11,10 @@ import javax.xml.soap.Node;
  * @Email: huxinjian@jiuyescm.com
  */
 public class LinkedOpera {
+    Stack stack = new Stack();
+
+    Queue queue = new ArrayBlockingQueue(100);
+
 
     /**
      * 简单的链表逆序
@@ -147,19 +154,19 @@ public class LinkedOpera {
 
 
     public static void main(String[] args) {
-//        LinkedNode node5 = new LinkedNode(5, null);
-//        LinkedNode node4 = new LinkedNode(4, node5);
-//        LinkedNode node3 = new LinkedNode(3, node4);
-//        LinkedNode node2 = new LinkedNode(2, node3);
-//        LinkedNode node1 = new LinkedNode(1, node2);
-//        reverseBetween(node1, 2,4);
-        //reverse(node1);
+        LinkedNode node5 = new LinkedNode(5, null);
+        LinkedNode node4 = new LinkedNode(4, node5);
+        LinkedNode node3 = new LinkedNode(3, node4);
+        LinkedNode node2 = new LinkedNode(2, node3);
+        LinkedNode node1 = new LinkedNode(1, node2);
+        //reverseBetween(node1, 2,4);
+        reverse(node1);
 
-        LinkedNode node5 = new LinkedNode(2, null);
-        LinkedNode node4 = new LinkedNode(5, node5);
-        LinkedNode node3 = new LinkedNode(1, node4);
-        LinkedNode node2 = new LinkedNode(4, node3);
-        LinkedNode node1 = new LinkedNode(3, node2);
+//        LinkedNode node5 = new LinkedNode(2, null);
+//        LinkedNode node4 = new LinkedNode(5, node5);
+//        LinkedNode node3 = new LinkedNode(1, node4);
+//        LinkedNode node2 = new LinkedNode(4, node3);
+//        LinkedNode node1 = new LinkedNode(3, node2);
         //partition(node1, 3);
 
         //a链表
@@ -170,7 +177,7 @@ public class LinkedOpera {
         LinkedNode bnode3 = new LinkedNode(7);
         LinkedNode bnode2 = new LinkedNode(5, bnode3);
         LinkedNode bnode1 = new LinkedNode(1, bnode2);
-        mergeNode(anode1, bnode1);
+        // mergeNode(anode1, bnode1);
 
     }
 }
