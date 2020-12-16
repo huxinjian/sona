@@ -16,18 +16,6 @@ public class SonaEurakeApplication {
     public static void main(String[] args) {
         SpringApplication.run(SonaEurakeApplication.class, args);
         logger.info("***********sona-eurake 注册中心启动完毕*************");
-        /*Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
-            new Thread(() -> {
-                for (int i = 0; i < 150; i++) {
-                    try {
-                        byte[] temp = new byte[1024 * 1024];
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }, 100, 100, TimeUnit.MICROSECONDS);*/
     }
 
 }

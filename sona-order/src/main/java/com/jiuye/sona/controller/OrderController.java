@@ -3,6 +3,7 @@ package com.jiuye.sona.controller;
 import com.jiuye.sona.common.vo.base.SonaBasicResponseVo;
 import com.jiuye.sona.entity.OrderDetailEntity;
 import com.jiuye.sona.entity.OrderEntity;
+import com.jiuye.sona.girl.GirlDemo;
 import com.jiuye.sona.service.api.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -30,7 +31,20 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
-  /**
+    @Autowired
+    private GirlDemo girlDemo;
+
+    /**
+     * 测试自己的starter
+     *
+     * @return
+     */
+    @GetMapping("/getGirl")
+    public String getGirlDemo(){
+       return girlDemo.toString();
+    }
+
+/**
      * 创建订单
      *
      * @return

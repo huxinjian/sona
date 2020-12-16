@@ -6,3 +6,11 @@ spring:
     config:
       uri: http://127.0.0.1:8030
       profile: dev
+com:
+  jiuye:
+    sona:
+      girl:
+        cup: 优秀
+        face: good
+        name: 苍老师
+        length: 168
