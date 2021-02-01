@@ -58,10 +58,25 @@
             <artifactId>cglib</artifactId>
             <version>3.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.db4j</groupId>
+            <artifactId>kilim</artifactId>
+            <version>2.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.db4j</groupId>-->
+                <!--<artifactId>kilim</artifactId>-->
+                <!--<version>2.0.2</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals><goal>weave</goal></goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

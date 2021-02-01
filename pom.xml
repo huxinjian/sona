@@ -21,6 +21,7 @@
         <module>sona-common</module>
         <module>sona-hystrix</module>
         <module>sona-config-server</module>
+        <module>sona-logs</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
