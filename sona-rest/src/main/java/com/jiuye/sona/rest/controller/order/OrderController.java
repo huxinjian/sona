@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class OrderController {
      * @param personId
      */
     @GetMapping("/queryOrder")
-    public Map<String, Object> queryOrder(String personId) {
+    public Map<String, Object> queryOrder(@RequestParam String personId) {
         Map map  = new HashMap();
 
         if ("001".equals(personId)) {
