@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: SONA-GATEWAY
+  #令牌桶算法使用的redis
+  redis:
+    host: localhost
+    port: 6379
   cloud:
     gateway:
       discovery:
@@ -20,7 +24,26 @@ spring:
         # 需要转发的地址
           predicates:
             - Path=/order/createOrder
-
+          filters:
+            - name: Hystrix
+              args:
+                name: default
+                fallbackUri: forward:/defaultFallback
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@pathKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
+#服务降级配配置
+hystrix:
+  shareSecurityContext: true
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 2000
 #注册中心
 eureka:
   instance:

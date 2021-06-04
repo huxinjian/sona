@@ -50,7 +50,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/createOrder")
-    public SonaBasicResponseVo creatOrder(){
+    public SonaBasicResponseVo creatOrder() throws InterruptedException {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setProductNum(new BigDecimal(5));
         orderEntity.setReceiveAddress("12312312");
@@ -75,6 +75,7 @@ public class OrderController {
         sonaBasicResponse.setCode("失败");
         sonaBasicResponse.setMessage("成功");
         sonaBasicResponse.setSuccess(true);
+        //Thread.sleep(3000);
         return sonaBasicResponse;
     }
 }
