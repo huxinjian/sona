@@ -1,60 +1,25 @@
-
-# hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 1000
-hystrix:
-  command:
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 1000
-#    default:
-#      circuitBreaker:
-        # 强制将断路器设置成开启状态
-#        forceOpen: true
-#服务的端口号
 server:
-  port: 8011
+  port: 8012
+
 spring:
   application:
-    name: sona-gateway
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
+    name: SONA-GATEWAY
   cloud:
     gateway:
-#      httpclient:
-#        connect-timeout: 1000
-#        response-timeout: 5s
       discovery:
         locator:
-          #接入注册中心
-          enabled: true
+          #开启服务列表发现并拥有默认路由功能，true开启，false关闭，默认就是false，以下三行也可以删除或者注释
+          enable: true
           #开启小写验证，默认feign根据服务名查找都是用的全大写
           lowerCaseServiceId: true
       routes:
-        #请求 http://localhost:8100/sona-product2/test会转发到data-producer服务
-        - id: jy-product
-          # 转发的后的地址前缀
-          # uri: http://localhost:8011
-          #在服务注册中心找服务名为 sona-product的服务
-          uri: lb://sona-product
-          # 需要转发的地址
-          predicates:
-            - Path=/jy-product/**
-          filters:
-            - StripPrefix=1
-            - name: Hystrix
-              args:
-                name: fallbackcmd
-                fallbackUri: forward:/productFallback
         # sona-order 服务过滤规则
         - id: sona-order
-          # 转发的后的地址前缀
+        # 转发的后的地址前缀
           uri: lb://sona-order
-          # 需要转发的地址
+        # 需要转发的地址
           predicates:
-            - Path=/order/**
-
+            - Path=/order/createOrder
 
 #注册中心
 eureka:
@@ -65,9 +30,13 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8010/eureka/
+      defaultZone: http://127.0.0.1:8010/eureka/
 
 # log日志配置
 logging:
   level:
     org.springframework.cloud.gateway: debug
+    org.springframework.http.server.reactive: debug
+    org.springframework.web.reactive: debug
+
+
