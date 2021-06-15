@@ -8,6 +8,12 @@ import java.util.Stack;
 
 public class RouteSum {
 
+    /**
+     * leetcode 113
+     * @param root
+     * @param targetSum
+     * @return
+     */
     public static boolean HasPathSum(TreeNode root, int targetSum) {
         List<Stack> result  = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
@@ -24,6 +30,7 @@ public class RouteSum {
         if(root == null) {
             return;
         }
+        stack.push(root.value);
         if(root.right == null && root.left == null){
             int sum = 0;
             for(int a: stack){
@@ -35,9 +42,8 @@ public class RouteSum {
                 result.add(target);
             }
         }
-        stack.push(root.value);
         bianli(root.left, targetSum, result, stack);
-        bianli(root.left,targetSum, result, stack);
+        bianli(root.right,targetSum, result, stack);
         stack.pop();
     }
 
@@ -50,9 +56,6 @@ public class RouteSum {
 
 
     public static void main(String[] args) {
-
-
-
         TreeNode node10 = new TreeNode();
         node10.value = 1;
         TreeNode node9 = new TreeNode();
@@ -88,8 +91,6 @@ public class RouteSum {
         node1.value = 5;
         node1.left= node2;
         node1.right =node3;
-
-
         HasPathSum(node1, 22);
     }
 }
