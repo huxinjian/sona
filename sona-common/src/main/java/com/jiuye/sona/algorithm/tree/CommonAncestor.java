@@ -38,7 +38,6 @@ public class CommonAncestor {
                 }
             }
         }
-        Thread.State
         return result;
     }
 
